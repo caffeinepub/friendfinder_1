@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BricolageGrotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Brand colors */
+    --brand-orange: 0.68 0.19 48;
+    --brand-blue: 0.55 0.2 255;
+    --brand-sky-bg: 0.96 0.02 235;
+    --brand-warm-bg: 0.96 0.03 75;
+
+    /* Semantic tokens */
+    --background: 0.97 0.01 75;
+    --foreground: 0.145 0.01 270;
+    --card: 1 0 0;
+    --card-foreground: 0.145 0.01 270;
+    --popover: 1 0 0;
+    --popover-foreground: 0.145 0.01 270;
+    --primary: 0.68 0.19 48;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.96 0 0;
+    --secondary-foreground: 0.35 0 0;
+    --muted: 0.95 0 0;
+    --muted-foreground: 0.52 0.02 270;
+    --accent: 0.55 0.2 255;
+    --accent-foreground: 1 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.92 0 0;
+    --input: 0.92 0 0;
+    --ring: 0.68 0.19 48;
+    --chart-1: 0.68 0.19 48;
+    --chart-2: 0.55 0.2 255;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 1 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.68 0.19 48;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.96 0.02 235;
+    --sidebar-accent-foreground: 0.145 0 0;
+    --sidebar-border: 0.92 0 0;
+    --sidebar-ring: 0.68 0.19 48;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    /* Outer background on desktop */
+    background-color: oklch(0.91 0.04 30);
+  }
+}
+
+/* Mobile shell layout */
+.outer-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: oklch(0.91 0.04 30);
+}
+
+.mobile-shell {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: oklch(var(--background));
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 430px) {
+  .outer-shell {
+    padding: 2rem 0 2rem;
+    align-items: flex-start;
+  }
+
+  .mobile-shell {
+    min-height: calc(100vh - 4rem);
+    min-height: calc(100dvh - 4rem);
+    border-radius: 2.5rem;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.mobile-main {
+  flex: 1;
+  overflow-y: auto;
+  /* Extra bottom padding so content clears the tab bar */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Bottom tab bar */
+.bottom-tab-bar {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: stretch;
+  background: oklch(var(--card));
+  border-top: 1px solid oklch(var(--border));
+  height: 64px;
+  padding-bottom: env(safe-area-inset-bottom);
+  flex-shrink: 0;
+}
